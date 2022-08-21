@@ -1,0 +1,66 @@
+﻿@model IEnumerable<u19088265_HW04.Models.Program>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Learning programmes</h2>
+<h5>The following programmes are currently active</h5>
+<br />
+<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Click to add a new program" style="margin-bottom:10px">
+    @Html.ActionLink("Create New", "Create")
+    
+</button>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-4">
+                <div class="card" style="margin-bottom:30px; margin-top:15px">
+                    <img class="card-img-top" src="~/Content/Media/img1.jpg" style="width:100%; height:200px; border-radius:25px" />
+                    <div class="card-body">
+                        <h2>@Html.DisplayFor(modelItem => item.programName)</h2>
+                        <div><h5>Facilitated by: @Html.DisplayFor(modelItem => item.facilitator)</h5></div>
+                        <div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+
+        <!-- Modal -->
+        @foreach (var item in Model)
+        {<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Program name: @Html.DisplayFor(modelItem => item.programName)</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Program type: @Html.DisplayFor(modelItem => item.programType)</p>
+                            <p>Duration: @Html.DisplayFor(modelItem => item.duration)</p>
+                            <p>Student group: @Html.DisplayFor(modelItem => item.studentGroup)</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+         } 
+        </div>
+</div>
+
